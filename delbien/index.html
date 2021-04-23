@@ -64,24 +64,50 @@
       panorama1 = new PANOLENS.ImagePanorama( 'https://sebastianlicea.github.io/360/delbien/p1.jpg');
 	  panorama1.addEventListener( 'progress', onProgress );
       panorama1.addEventListener( 'enter', onEnter );
+	  
+	  // First panorama
+      panorama2 = new PANOLENS.ImagePanorama( 'https://sebastianlicea.github.io/360/delbien/p3.jpg');
+	  panorama2.addEventListener( 'progress', onProgress );
+      panorama2.addEventListener( 'enter', onEnter );
+	  
+	  // Third panorama
+      panorama3 = new PANOLENS.ImagePanorama( 'https://sebastianlicea.github.io/360/delbien/p2.jpg');
+	  panorama3.addEventListener( 'progress', onProgress );
+      panorama3.addEventListener( 'enter', onEnter );
 
 		viewer = new PANOLENS.Viewer({output: 'console'});
 		viewer.add(panorama1);
+		viewer.add(panorama2);
+		viewer.add(panorama3);
 
-var infospot1 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
-var infospot2 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
+		var infospot1 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
+		var infospot2 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
+		var infospot3 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
+		
+		var infospot4 = new PANOLENS.Infospot(350,PANOLENS.DataImage.Info);
 
 
 //INFORSPOTS FOR PANORAMA1
-infospot1.position.set(-5000.00, -321.57, -1123.94);
-infospot1.addHoverText('Casilleros');
-infospot2.position.set(-5000.00, -116.37, -2318.75);
-infospot2.addHoverText('Baños');
-
+infospot1.position.set(-5000.00, -650.85, -293.02);infospot1.addHoverText('Casilleros');
+infospot2.position.set(-5000.00, -483.81, -2556.46);infospot2.addHoverText('Baños');
+infospot3.position.set(5000.00, -636.95, -3505.77);infospot3.addHoverText('Tarimas');
 
 panorama1.add(infospot1);
 panorama1.add(infospot2);
+panorama1.add(infospot3);
 
+//INFORSPOTS FOR PANORAMA2
+infospot4.position.set(5000.00, -109.92, -2413.45);infospot4.addHoverText('Almacén');
+
+panorama2.add(infospot4);
+
+
+
+// Linking panoramas
+panorama1.link( panorama2, new THREE.Vector3( 5000.00, -617.78, 592.19 ) );
+panorama2.link( panorama1, new THREE.Vector3( -5000.00, -906.75, 1278.55 ) );
+panorama2.link( panorama3, new THREE.Vector3( 5000.00, -646.61, -1135.66 ) );
+panorama3.link( panorama2, new THREE.Vector3( -5000.00, -1579.22, 1008.48 ) );
 
 </script>
 </body>
